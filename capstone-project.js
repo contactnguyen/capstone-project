@@ -99,7 +99,7 @@ function setupPage() {
       placeholder.textContent = "Start the voice conversation with Sam using the widget below";
       placeholder.hidden = false;
       widgetMount.classList.add("is-connected");
-      setStatus("Ready to call", "connected");
+      setStatus("Online", "connected");
       widget.on("newRTCSession", (session) => {
         widgetMount.classList.add("is-in-call");
         companion.hidden = true;

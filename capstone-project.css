@@ -109,7 +109,7 @@ button, input, a { font: inherit; }
 .capstone-intro h1 {
   max-width: 700px;
   margin-bottom: 22px;
-  font-size: clamp(3.2rem, 7.2vw, 6rem);
+  font-size: clamp(2.65rem, 5vw, 4.25rem);
   line-height: 1;
 }
 .capstone-lede {
@@ -329,7 +329,7 @@ input:focus-visible,
     font-size: .56rem;
     letter-spacing: .07em;
   }
-  .capstone-intro h1 { font-size: clamp(2.8rem, 14vw, 4.7rem); }
+  .capstone-intro h1 { font-size: clamp(2.3rem, 11vw, 3.6rem); }
   .capstone-card-heading { align-items: flex-start; flex-direction: column; }
   .capstone-card-footer { align-items: stretch; flex-direction: column; }
   .capstone-card-footer p { max-width: none; }
