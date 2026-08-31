@@ -1,0 +1,313 @@
+:root {
+  color-scheme: dark;
+  --ink: #f3f7fc;
+  --muted: #9eb2cc;
+  --page: #07111e;
+  --panel-solid: #0e1c2f;
+  --line: #213d5c;
+  --accent: #5ecbed;
+  --accent-strong: #b7f4ff;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background: var(--page);
+  font-family: inherit;
+}
+
+button, input, a { font: inherit; }
+
+.eyebrow {
+  margin: 0 0 13px;
+  color: var(--accent);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  line-height: 1.3;
+}
+
+.capstone-page {
+  min-height: 100vh;
+}
+
+.capstone-app {
+  width: min(1450px, calc(100% - 80px));
+  margin: 0 auto;
+  padding-bottom: 56px;
+}
+
+.capstone-appbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 76px;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 88%, transparent);
+}
+
+.capstone-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18px;
+}
+
+.capstone-nav a {
+  color: var(--muted);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-decoration: none;
+  transition: color .18s ease;
+}
+.capstone-nav a:hover,
+.capstone-nav a:focus-visible,
+.capstone-nav a[aria-current="page"] { color: var(--accent-strong); }
+
+.capstone-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 510px);
+  align-items: center;
+  gap: clamp(42px, 7vw, 104px);
+  padding: 78px 0 62px;
+}
+
+.capstone-intro { min-width: 0; }
+.capstone-owner {
+  margin: 0 0 7px;
+  color: var(--ink);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+.capstone-intro > .capstone-certification {
+  white-space: nowrap;
+  color: var(--accent);
+  font-size: clamp(.58rem, .95vw, .76rem);
+  letter-spacing: .1em;
+  text-transform: none;
+}
+.capstone-intro h1 {
+  max-width: 700px;
+  margin-bottom: 22px;
+  font-size: clamp(3.2rem, 7.2vw, 6rem);
+  line-height: 1;
+}
+.capstone-lede {
+  max-width: 580px;
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: clamp(1.02rem, 1.7vw, 1.25rem);
+  line-height: 1.6;
+}
+
+.capstone-call-card {
+  min-width: 0;
+  width: 100%;
+  justify-self: end;
+  padding: clamp(24px, 4vw, 36px);
+  color: #edf7ff;
+  background: linear-gradient(145deg, rgba(9, 26, 52, .96), rgba(4, 13, 31, .98));
+  border: 1px solid #254a6c;
+  border-radius: 23px;
+  box-shadow: 0 28px 80px rgba(4, 18, 45, .22);
+}
+
+.capstone-card-heading,
+.capstone-card-footer,
+.capstone-dialog-heading,
+.capstone-dialog-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.capstone-card-heading h2 { margin: 0; color: #f4fbff; font-size: 1.6rem; letter-spacing: -.035em; }
+.capstone-label { margin: 0 0 7px; color: #65d8ea; font-size: .62rem; font-weight: 800; letter-spacing: .12em; line-height: 1.3; }
+.capstone-status { padding: 7px 10px; color: #8eaac2; background: rgba(82, 119, 150, .16); border: 1px solid #315271; border-radius: 999px; font-size: .72rem; white-space: nowrap; }
+.capstone-status[data-state="connected"] { color: #6df0d4; border-color: #2d7b70; }
+.capstone-status[data-state="error"] { color: #ff9eaa; border-color: #814651; }
+
+.capstone-widget-mount {
+  min-height: 196px;
+  display: grid;
+  place-items: center;
+  margin-top: 28px;
+  padding: 24px;
+  color: #95b0c9;
+  text-align: center;
+  line-height: 1.55;
+  background: rgba(5, 18, 38, .76);
+  border: 1px dashed #41627e;
+  border-radius: 15px;
+}
+.capstone-widget-mount p { max-width: 310px; margin: 0; }
+.capstone-widget-mount.is-connected {
+  position: fixed;
+  right: 16px;
+  bottom: 126px;
+  z-index: 20;
+  display: grid;
+  gap: 6px;
+  width: min(360px, calc(100vw - 32px));
+  min-height: 0;
+  margin: 0;
+  padding: 16px 18px;
+  color: #b7d2e5;
+  text-align: left;
+  background: linear-gradient(145deg, rgba(9, 26, 52, .98), rgba(4, 13, 31, .99));
+  border: 1px solid #2d6175;
+  border-radius: 15px;
+  box-shadow: 0 18px 45px rgba(1, 12, 28, .45);
+}
+.capstone-widget-mount.is-connected::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(108deg, transparent 0%, transparent 38%, rgba(101, 216, 234, .08) 46%, rgba(107, 231, 191, .34) 50%, rgba(101, 216, 234, .08) 54%, transparent 62%, transparent 100%);
+  background-size: 320% 100%;
+  background-position: 0 0;
+  clip-path: inset(0 round 15px);
+  opacity: 0;
+  animation: capstone-callout-scan 4.8s linear infinite;
+}
+.capstone-widget-mount.is-connected > * { position: relative; z-index: 1; }
+.capstone-widget-mount.is-connected::after {
+  content: "";
+  position: absolute;
+  right: 27px;
+  bottom: -8px;
+  z-index: 2;
+  width: 14px;
+  height: 14px;
+  background: #071a32;
+  border-right: 1px solid #2d6175;
+  border-bottom: 1px solid #2d6175;
+  transform: rotate(45deg);
+}
+.capstone-widget-mount.is-connected .capstone-label { margin: 0; }
+.capstone-widget-mount.is-connected #widget-placeholder {
+  max-width: none;
+  color: #b7d2e5;
+  font-size: .82rem;
+  line-height: 1.45;
+}
+.capstone-widget-mount.is-connected.is-in-call { display: none; }
+
+@keyframes capstone-callout-scan {
+  0%, 18% { opacity: 0; background-position: 0 0; }
+  50% { opacity: .85; background-position: 50% 0; }
+  82%, 100% { opacity: 0; background-position: 100% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capstone-widget-mount.is-connected::before { animation: none; }
+}
+
+.capstone-companion {
+  margin-top: 20px;
+  padding: 19px;
+  background: rgba(12, 43, 47, .7);
+  border: 1px solid #338579;
+  border-radius: 15px;
+}
+.capstone-companion[hidden] { display: none; }
+.capstone-companion h3 { margin: 0; color: #f1fffc; font-size: 1.1rem; letter-spacing: -.02em; }
+.capstone-companion p:not(.capstone-label) { margin: 8px 0 17px; color: #b2d7d2; font-size: .84rem; line-height: 1.5; }
+
+.capstone-action,
+.capstone-settings,
+.capstone-close {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+.capstone-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 43px;
+  padding: 10px 14px;
+  color: #06241e;
+  background: #6be7bf;
+  border-radius: 9px;
+  font-size: .82rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+.capstone-action:hover { background: #8af2cf; }
+.capstone-settings {
+  padding: 8px 11px;
+  color: #bdd1e2;
+  background: transparent;
+  border: 1px solid #385773;
+  border-radius: 8px;
+  font-size: .74rem;
+}
+.capstone-settings:hover { color: #fff; border-color: #668ba8; background: rgba(35, 66, 94, .45); }
+.capstone-card-footer { align-items: flex-end; margin-top: 20px; }
+.capstone-card-footer p { max-width: 255px; margin: 0; color: #7895ae; font-size: .72rem; line-height: 1.45; }
+.capstone-action:focus-visible,
+.capstone-settings:focus-visible,
+.capstone-close:focus-visible,
+input:focus-visible,
+.capstone-nav a:focus-visible {
+  outline: 3px solid rgba(100, 230, 194, .35);
+  outline-offset: 3px;
+}
+
+#settings-dialog {
+  width: min(92vw, 610px);
+  padding: 0;
+  color: var(--ink);
+  background: var(--panel-solid);
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  box-shadow: 0 30px 90px rgba(1, 12, 25, .42);
+}
+#settings-dialog::backdrop { background: rgba(1, 10, 22, .7); }
+#settings-dialog form { padding: 25px; }
+.capstone-dialog-heading h2 { margin: 0; font-size: 1.4rem; letter-spacing: -.03em; }
+.capstone-dialog-copy { color: var(--muted); line-height: 1.55; }
+#settings-dialog label { display: block; margin: 21px 0 8px; color: var(--ink); font-size: .82rem; font-weight: 700; }
+#settings-dialog input { width: 100%; padding: 12px 13px; color: var(--ink); background: var(--page); border: 1px solid var(--line); border-radius: 9px; }
+.capstone-close { color: var(--muted); background: transparent; font-size: 1.7rem; line-height: 1; }
+.capstone-error { margin: 8px 0 0; color: #b32949; font-size: .78rem; }
+.capstone-dialog-actions { margin-top: 21px; }
+
+@media (max-width: 980px) {
+  .capstone-nav { gap: 11px; }
+  .capstone-nav a { font-size: .64rem; }
+  .capstone-hero { grid-template-columns: 1fr; }
+  .capstone-call-card { max-width: 650px; width: 100%; }
+}
+
+@media (max-width: 700px) {
+  .capstone-app { width: min(100% - 24px, 1180px); }
+  .capstone-appbar { align-items: flex-start; gap: 10px; padding: 14px 0; }
+  .capstone-nav { flex-wrap: wrap; justify-content: flex-end; gap: 7px 10px; }
+  .capstone-nav a { font-size: .57rem; }
+  .capstone-hero { gap: 35px; padding: 48px 0 42px; }
+  .capstone-intro > .capstone-certification {
+    max-width: 100%;
+    white-space: normal;
+    font-size: .56rem;
+    letter-spacing: .07em;
+  }
+  .capstone-intro h1 { font-size: clamp(2.8rem, 14vw, 4.7rem); }
+  .capstone-card-heading { align-items: flex-start; flex-direction: column; }
+  .capstone-card-footer { align-items: stretch; flex-direction: column; }
+  .capstone-card-footer p { max-width: none; }
+  .capstone-card-footer .capstone-settings { width: 100%; }
+  .capstone-companion .capstone-action { width: 100%; }
+  .capstone-dialog-actions { align-items: stretch; flex-direction: column-reverse; }
+  .capstone-dialog-actions > * { width: 100%; }
+}

@@ -1,4 +1,4 @@
-name: Deploy Click-to-Call demo
+name: Deploy Qwik Service Capstone
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Check out demo files
+      - name: Check out Capstone files
         uses: actions/checkout@v4
 
       - name: Configure GitHub Pages
@@ -31,15 +31,23 @@ jobs:
         env:
           ENDPOINT_URL: ${{ secrets.COGNIGY_ENDPOINT_CONFIG_URL }}
         run: |
+          set -euo pipefail
           mkdir -p dist
-          cp index.html styles.css app.js dist/
+          cp index.html capstone-project.css capstone-project.js dist/
           python3 - <<'PY'
           import json
           import os
           from pathlib import Path
 
           value = os.environ.get("ENDPOINT_URL", "").strip()
-          Path("dist/config.js").write_text(
+          if not value:
+              raise SystemExit(
+                  "Missing required secret: COGNIGY_ENDPOINT_CONFIG_URL"
+              )
+          if not value.startswith("https://"):
+              raise SystemExit("Endpoint configuration URL must use HTTPS")
+
+          Path("dist/capstone-config.js").write_text(
               "window.QWIK_COGNIGY_ENDPOINT = " + json.dumps(value) + ";\n",
               encoding="utf-8",
           )

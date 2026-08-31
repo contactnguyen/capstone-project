@@ -1,6 +1,4 @@
-const STORAGE_KEY = "qwik.cognigyEndpointConfigUrl";
-
-export function parseInfoBody(event) {
+function parseInfoBody(event) {
   const info = event?.info ?? event;
   let body = info?.body ?? info?.request?.body ?? event?.body;
   if (typeof body === "string") {
@@ -9,7 +7,7 @@ export function parseInfoBody(event) {
   return body && typeof body === "object" ? body : null;
 }
 
-export function unwrapData(payload) {
+function unwrapData(payload) {
   let current = payload;
   for (let i = 0; i < 3; i += 1) {
     if (!current || typeof current !== "object" || !current.data || typeof current.data !== "object") break;
@@ -18,7 +16,7 @@ export function unwrapData(payload) {
   return current;
 }
 
-export function getXappUrl(payload) {
+function getXappUrl(payload) {
   const candidates = [];
   let current = payload;
   for (let i = 0; i < 4 && current && typeof current === "object"; i += 1) {
@@ -29,12 +27,12 @@ export function getXappUrl(payload) {
   return found || null;
 }
 
-export function isCancellationMessage(payload) {
+function isCancellationMessage(payload) {
   const data = unwrapData(payload);
   return data?.type === "xapp" && (data?.action === "show" || data?.show === true);
 }
 
-export function isValidEndpointUrl(value) {
+function isValidEndpointUrl(value) {
   try {
     const url = new URL(value);
     return url.protocol === "https:" && url.pathname.length > 1;
@@ -42,6 +40,8 @@ export function isValidEndpointUrl(value) {
     return false;
   }
 }
+
+const STORAGE_KEY = "qwik.cognigyEndpointConfigUrl";
 
 function setupPage() {
   const settingsButton = document.querySelector("#settings-button");
@@ -51,6 +51,7 @@ function setupPage() {
   const clearButton = document.querySelector("#clear-settings");
   const errorText = document.querySelector("#settings-error");
   const status = document.querySelector("#connection-status");
+  const widgetMount = document.querySelector("#widget-mount");
   const placeholder = document.querySelector("#widget-placeholder");
   const companion = document.querySelector("#companion-panel");
   const xappLink = document.querySelector("#xapp-link");
@@ -81,6 +82,11 @@ function setupPage() {
       settingsDialog.showModal();
       return;
     }
+    if (!window.isSecureContext) {
+      setStatus("HTTPS required", "error");
+      placeholder.textContent = "This private test page is served over HTTP. Microphone and WebRTC require an HTTPS Tailscale URL before a call can start.";
+      return;
+    }
     if (typeof window.initWebRTCWidget !== "function") {
       setStatus("Widget unavailable", "error");
       placeholder.textContent = "The Cognigy Click-to-Call library could not be loaded. Check the network connection and reload this page.";
@@ -89,12 +95,18 @@ function setupPage() {
     try {
       setStatus("Connecting", "pending");
       const widget = await window.initWebRTCWidget(endpointUrl);
-      placeholder.hidden = true;
+      placeholder.textContent = "Start the voice conversation with Sam using the widget below";
+      placeholder.hidden = false;
+      widgetMount.classList.add("is-connected");
       setStatus("Ready to call", "connected");
       widget.on("newRTCSession", (session) => {
+        widgetMount.classList.add("is-in-call");
         companion.hidden = true;
         session.on("newInfo", handleInfo);
-        const reset = () => { companion.hidden = true; };
+        const reset = () => {
+          companion.hidden = true;
+          widgetMount.classList.remove("is-in-call");
+        };
         session.on("ended", reset);
         session.on("terminated", reset);
       });
@@ -129,17 +141,6 @@ function setupPage() {
     endpointInput.value = "";
     errorText.hidden = true;
   });
-
-  const query = new URLSearchParams(location.search);
-  if (query.get("demo") === "1") {
-    setStatus("Demo mode", "connected");
-    placeholder.textContent = "Demo mode simulates the message sent by the Cognigy Flow.";
-    handleInfo({
-      originator: "remote",
-      info: { body: JSON.stringify({ data: { type: "xapp", action: "show", xAppUrl: "https://example.com/cancellation-confirmation" } }) }
-    });
-    return;
-  }
 
   const configuredEndpoint = typeof window.QWIK_COGNIGY_ENDPOINT === "string"
     ? window.QWIK_COGNIGY_ENDPOINT.trim()

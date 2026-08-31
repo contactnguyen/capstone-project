@@ -1,10 +1,33 @@
-# Qwik Service Click-to-Call demo
+# Qwik Service Capstone — evaluator page
 
-Temporary public deployment for the certification evaluator.
+Standalone Click-to-Call page for the Qwik Service appointment assistant.
 
-The source project and development history remain in the private repository:
-`https://github.com/contactnguyen/qwik-click-to-call`
+The page contains only the evaluator-facing surface:
 
-This repository contains only the static files required to run the evaluator page. GitHub Actions generates `config.js` during deployment from the repository secret `COGNIGY_ENDPOINT_CONFIG_URL`; the Endpoint URL is not committed to this repository.
+- Sam voice assistant via Cognigy Click-to-Call;
+- secure appointment-support experience;
+- dynamic Cancellation xApp link received from the active call session.
 
-The site is intended to be temporary and should be disabled after the evaluation.
+## Local preview
+
+Serve the folder over HTTP during development:
+
+```bash
+python3 -m http.server 10001
+```
+
+The browser-local Connection settings dialog can be used for a private test Endpoint URL.
+
+## Deployment
+
+GitHub Pages is deployed by `.github/workflows/deploy-pages.yml`. The workflow reads the Cognigy Endpoint configuration URL from the repository secret:
+
+```text
+COGNIGY_ENDPOINT_CONFIG_URL
+```
+
+The value is injected into the generated Pages artifact at deployment time and is not committed to Git. It is necessarily visible to the browser that uses the Click-to-Call page; Cognigy API credentials remain in Cognigy Connections and are never stored here.
+
+## Temporary evaluation release
+
+Treat the Pages URL as a public evaluator link. `noindex` reduces search-engine discovery but is not access control. Disable the site and rotate/revoke replaceable Endpoint access when the evaluation window ends.

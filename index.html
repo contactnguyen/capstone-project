@@ -3,82 +3,74 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
-  <title>Qwik Service — Voice appointments</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Qwik Service · Voice appointment assistant</title>
+  <meta name="description" content="Qwik Service voice appointment assistant for secure appointment support.">
+  <link rel="stylesheet" href="capstone-project.css">
 </head>
-<body>
-  <main class="shell">
-    <header class="masthead">
-      <a class="brand" href="#" aria-label="Qwik Service home">
-        <span class="brand-mark" aria-hidden="true">Q</span>
-        <span>Qwik Service</span>
-      </a>
-      <button id="settings-button" class="quiet-button" type="button">Connection settings</button>
-    </header>
-
-    <section class="hero" aria-labelledby="page-title">
-      <div class="hero-copy">
-        <p class="kicker">Voice appointment service</p>
-        <h1 id="page-title">Talk to Sam.<br>Manage your appointment.</h1>
-        <p class="lede">Ask a service question, verify your identity, or manage an existing Qwik Service appointment in one secure conversation.</p>
-        <ul class="capabilities" aria-label="Available services">
-          <li>Service FAQs</li>
-          <li>Appointment booking and lookup</li>
-          <li>Rescheduling and cancellation</li>
-          <li>Nexora safety inspections</li>
-        </ul>
+<body class="capstone-page">
+  <main class="capstone-app">
+    <section class="capstone-hero" aria-labelledby="capstone-title">
+      <div class="capstone-intro">
+        <p class="capstone-owner">NGOC HAN NGUYEN</p>
+        <p class="eyebrow capstone-certification">NiCE COGNIGY NCAE PRACTITIONER CERTIFICATION · COGNIGY CAPSTONE PROJECT</p>
+        <h1 id="capstone-title">Qwik Service<br>appointment assistant</h1>
+        <p class="capstone-lede">A voice-first service experience for FAQs, identity verification, appointment management, and the Cancellation xApp.</p>
       </div>
 
-      <div class="call-panel" aria-labelledby="call-heading">
-        <div class="panel-heading">
+      <section class="capstone-call-card" aria-labelledby="call-heading">
+        <div class="capstone-card-heading">
           <div>
-            <p class="status-label">Voice assistant</p>
+            <p class="capstone-label">VOICE ASSISTANT</p>
             <h2 id="call-heading">Sam is ready</h2>
           </div>
-          <span id="connection-status" class="status-chip" data-state="pending">Not connected</span>
+          <span id="connection-status" class="capstone-status" data-state="pending">Not connected</span>
         </div>
 
-        <div id="widget-mount" class="widget-mount" aria-live="polite">
-          <p id="widget-placeholder">Connect this page to the Cognigy Voice Gateway Endpoint to load the call widget.</p>
+        <div id="widget-mount" class="capstone-widget-mount" aria-live="polite">
+          <p class="capstone-label">TALK TO SAM</p>
+          <p id="widget-placeholder">Start the voice conversation with Sam using the widget below</p>
         </div>
 
-        <section id="companion-panel" class="companion-panel" aria-labelledby="companion-title" hidden>
+        <section id="companion-panel" class="capstone-companion" aria-labelledby="companion-title" hidden>
           <div>
-            <p class="status-label">Action required</p>
+            <p class="capstone-label">COMPANION ACTION</p>
             <h3 id="companion-title">Confirm your cancellation decision</h3>
             <p id="companion-copy">Sam has prepared a secure confirmation page for this call.</p>
           </div>
-          <a id="xapp-link" class="primary-action" href="#" target="_blank" rel="noopener noreferrer">Open cancellation confirmation</a>
+          <a id="xapp-link" class="capstone-action" href="#" target="_blank" rel="noopener noreferrer">Open cancellation confirmation</a>
         </section>
 
-        <p class="privacy-note">Your appointment is changed only after you explicitly confirm the action.</p>
-      </div>
+        <div class="capstone-card-footer">
+          <p>Appointment changes happen only after explicit confirmation.</p>
+          <button id="settings-button" class="capstone-settings" type="button">Connection settings</button>
+        </div>
+      </section>
     </section>
   </main>
 
   <dialog id="settings-dialog" aria-labelledby="settings-title">
     <form id="settings-form" method="dialog">
-      <div class="dialog-heading">
+      <div class="capstone-dialog-heading">
         <div>
-          <p class="kicker">Local browser setting</p>
+          <p class="eyebrow">LOCAL BROWSER SETTING</p>
           <h2 id="settings-title">Connect Cognigy</h2>
         </div>
-        <button class="icon-button" value="cancel" aria-label="Close settings">×</button>
+        <button class="capstone-close" value="cancel" aria-label="Close settings">×</button>
       </div>
-      <p class="dialog-copy">Paste the complete Endpoint configuration URL from <strong>Click To Call Embedding HTML</strong>. It stays in this browser’s local storage and is not written into this page.</p>
+      <p class="capstone-dialog-copy">Paste the complete Endpoint configuration URL from <strong>Click To Call Embedding HTML</strong>. It stays in this browser's local storage.</p>
       <label for="endpoint-url">Endpoint configuration URL</label>
       <input id="endpoint-url" name="endpoint-url" type="url" inputmode="url" autocomplete="off" placeholder="https://endpoint…cognigy.ai/…" required>
-      <p id="settings-error" class="error-text" role="alert" hidden></p>
-      <div class="dialog-actions">
-        <button class="quiet-button" type="button" id="clear-settings">Clear</button>
-        <button class="primary-action" type="submit">Save and connect</button>
+      <p id="settings-error" class="capstone-error" role="alert" hidden></p>
+      <div class="capstone-dialog-actions">
+        <button class="capstone-settings" type="button" id="clear-settings">Clear</button>
+        <button class="capstone-action" type="submit">Save and connect</button>
       </div>
     </form>
   </dialog>
 
   <script src="https://github.com/Cognigy/click-to-call-widget/releases/latest/download/webRTCWidget.js"></script>
-  <script src="config.js"></script>
-  <script type="module" src="app.js"></script>
+  <script src="capstone-config.js"></script>
+  <script type="module" src="capstone-project.js"></script>
 </body>
 </html>
