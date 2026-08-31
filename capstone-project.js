@@ -49,6 +49,7 @@ function setupPage() {
   const settingsForm = document.querySelector("#settings-form");
   const endpointInput = document.querySelector("#endpoint-url");
   const clearButton = document.querySelector("#clear-settings");
+  const closeButton = document.querySelector("#close-settings");
   const errorText = document.querySelector("#settings-error");
   const status = document.querySelector("#connection-status");
   const widgetMount = document.querySelector("#widget-mount");
@@ -113,7 +114,7 @@ function setupPage() {
     } catch (error) {
       console.error("Click-to-Call initialization failed", error);
       setStatus("Connection failed", "error");
-      placeholder.textContent = "The Voice Gateway Endpoint could not be initialized. Open Connection settings and verify the configuration URL.";
+      placeholder.textContent = "The Voice Gateway Endpoint could not be initialized. Please reload the page and try again.";
     }
   };
 
@@ -121,6 +122,10 @@ function setupPage() {
     endpointInput.value = localStorage.getItem(STORAGE_KEY) || "";
     errorText.hidden = true;
     settingsDialog.showModal();
+  });
+
+  closeButton.addEventListener("click", () => {
+    settingsDialog.close();
   });
 
   settingsForm.addEventListener("submit", (event) => {
@@ -145,6 +150,9 @@ function setupPage() {
   const configuredEndpoint = typeof window.QWIK_COGNIGY_ENDPOINT === "string"
     ? window.QWIK_COGNIGY_ENDPOINT.trim()
     : "";
+  if (configuredEndpoint) {
+    settingsButton.hidden = true;
+  }
   connect(configuredEndpoint || localStorage.getItem(STORAGE_KEY));
 }
 

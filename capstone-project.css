@@ -253,6 +253,7 @@ button, input, a { font: inherit; }
   font-size: .74rem;
 }
 .capstone-settings:hover { color: #fff; border-color: #668ba8; background: rgba(35, 66, 94, .45); }
+.capstone-settings[hidden] { display: none; }
 .capstone-card-footer { align-items: flex-end; margin-top: 20px; }
 .capstone-card-footer p { max-width: 255px; margin: 0; color: #7895ae; font-size: .72rem; line-height: 1.45; }
 .capstone-action:focus-visible,

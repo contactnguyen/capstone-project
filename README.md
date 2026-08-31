@@ -16,7 +16,7 @@ Serve the folder over HTTP during development:
 python3 -m http.server 10001
 ```
 
-The browser-local Connection settings dialog can be used for a private test Endpoint URL.
+The browser-local Connection settings dialog can be used for a private test Endpoint URL. When a deployment contains the `COGNIGY_ENDPOINT_CONFIG_URL` secret, the page uses that embedded Endpoint automatically and hides the local settings control. The dialog is only a fallback for local or private builds without deployment-time configuration.
 
 ## Deployment
 
