@@ -1,5 +1,5 @@
 # Cognigy Capstone Project
 
-NiCE Cognigy NCAE Practitioner Capstone — Use Case 1: Automotive Scheduling.
+This repository contains the evaluator page for my Capstone Project.
 
 **Demo:** https://contactnguyen.github.io/capstone-project/
