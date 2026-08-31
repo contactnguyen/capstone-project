@@ -35,6 +35,19 @@ button, input, a { font: inherit; }
   min-height: 100vh;
 }
 
+/* Keep the native Cognigy widget footer readable on the dark surface. */
+.webrtc_widget_container,
+.webrtc_widget_outer_wrapper {
+  --webrtc-powered-by-color: rgba(255, 255, 255, 1);
+  --webrtc-powered-by-link-color: rgba(255, 255, 255, 1);
+}
+
+.webrtc_widget_powered_by,
+.webrtc_widget_powered_by a,
+.webrtc_widget_powered_by a:visited {
+  color: #fff !important;
+}
+
 .capstone-app {
   width: min(1450px, calc(100% - 80px));
   margin: 0 auto;
