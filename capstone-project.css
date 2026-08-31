@@ -83,7 +83,7 @@ button, input, a { font: inherit; }
 
 .capstone-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(420px, 510px);
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 540px);
   align-items: center;
   gap: clamp(42px, 7vw, 104px);
   padding: 78px 0 62px;
@@ -93,7 +93,7 @@ button, input, a { font: inherit; }
 .capstone-owner {
   margin: 0 0 7px;
   color: var(--ink);
-  font-size: .72rem;
+  font-size: .8rem;
   font-weight: 800;
   letter-spacing: .12em;
   line-height: 1.3;
@@ -102,7 +102,7 @@ button, input, a { font: inherit; }
 .capstone-intro > .capstone-certification {
   white-space: nowrap;
   color: var(--accent);
-  font-size: clamp(.58rem, .95vw, .76rem);
+  font-size: clamp(.64rem, 1vw, .84rem);
   letter-spacing: .1em;
   text-transform: none;
 }
@@ -116,7 +116,7 @@ button, input, a { font: inherit; }
   max-width: 580px;
   margin-bottom: 0;
   color: var(--muted);
-  font-size: clamp(1.02rem, 1.7vw, 1.25rem);
+  font-size: clamp(1.12rem, 1.8vw, 1.34rem);
   line-height: 1.6;
 }
 
@@ -124,7 +124,7 @@ button, input, a { font: inherit; }
   min-width: 0;
   width: 100%;
   justify-self: end;
-  padding: clamp(24px, 4vw, 36px);
+  padding: clamp(30px, 4vw, 42px);
   color: #edf7ff;
   background: linear-gradient(145deg, rgba(9, 26, 52, .96), rgba(4, 13, 31, .98));
   border: 1px solid #254a6c;
@@ -141,26 +141,27 @@ button, input, a { font: inherit; }
   justify-content: space-between;
   gap: 16px;
 }
-.capstone-card-heading h2 { margin: 0; color: #f4fbff; font-size: 1.6rem; letter-spacing: -.035em; }
-.capstone-label { margin: 0 0 7px; color: #65d8ea; font-size: .62rem; font-weight: 800; letter-spacing: .12em; line-height: 1.3; }
-.capstone-status { padding: 7px 10px; color: #8eaac2; background: rgba(82, 119, 150, .16); border: 1px solid #315271; border-radius: 999px; font-size: .72rem; white-space: nowrap; }
+.capstone-card-heading h2 { margin: 0; color: #f4fbff; font-size: 1.8rem; letter-spacing: -.035em; }
+.capstone-label { margin: 0 0 8px; color: #65d8ea; font-size: .7rem; font-weight: 800; letter-spacing: .12em; line-height: 1.3; }
+.capstone-status { padding: 8px 12px; color: #8eaac2; background: rgba(82, 119, 150, .16); border: 1px solid #315271; border-radius: 999px; font-size: .82rem; white-space: nowrap; }
 .capstone-status[data-state="connected"] { color: #6df0d4; border-color: #2d7b70; }
 .capstone-status[data-state="error"] { color: #ff9eaa; border-color: #814651; }
 
 .capstone-widget-mount {
-  min-height: 196px;
+  min-height: 220px;
   display: grid;
   place-items: center;
   margin-top: 28px;
-  padding: 24px;
+  padding: 30px;
   color: #95b0c9;
   text-align: center;
+  font-size: 1.05rem;
   line-height: 1.55;
   background: rgba(5, 18, 38, .76);
   border: 1px dashed #41627e;
   border-radius: 15px;
 }
-.capstone-widget-mount p { max-width: 310px; margin: 0; }
+.capstone-widget-mount p { max-width: 340px; margin: 0; }
 .capstone-widget-mount.is-connected {
   position: fixed;
   right: 16px;
@@ -210,7 +211,7 @@ button, input, a { font: inherit; }
 .capstone-widget-mount.is-connected #widget-placeholder {
   max-width: none;
   color: #b7d2e5;
-  font-size: .82rem;
+  font-size: .92rem;
   line-height: 1.45;
 }
 .capstone-widget-mount.is-connected.is-in-call { display: none; }
@@ -226,15 +227,15 @@ button, input, a { font: inherit; }
 }
 
 .capstone-companion {
-  margin-top: 20px;
-  padding: 19px;
+  margin-top: 24px;
+  padding: 23px;
   background: rgba(12, 43, 47, .7);
   border: 1px solid #338579;
   border-radius: 15px;
 }
 .capstone-companion[hidden] { display: none; }
-.capstone-companion h3 { margin: 0; color: #f1fffc; font-size: 1.1rem; letter-spacing: -.02em; }
-.capstone-companion p:not(.capstone-label) { margin: 8px 0 17px; color: #b2d7d2; font-size: .84rem; line-height: 1.5; }
+.capstone-companion h3 { margin: 0; color: #f1fffc; font-size: 1.2rem; letter-spacing: -.02em; }
+.capstone-companion p:not(.capstone-label) { margin: 8px 0 17px; color: #b2d7d2; font-size: .92rem; line-height: 1.5; }
 
 .capstone-action,
 .capstone-settings,
@@ -247,28 +248,28 @@ button, input, a { font: inherit; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 43px;
-  padding: 10px 14px;
+  min-height: 46px;
+  padding: 12px 16px;
   color: #06241e;
   background: #6be7bf;
   border-radius: 9px;
-  font-size: .82rem;
+  font-size: .9rem;
   font-weight: 800;
   text-decoration: none;
 }
 .capstone-action:hover { background: #8af2cf; }
 .capstone-settings {
-  padding: 8px 11px;
+  padding: 10px 13px;
   color: #bdd1e2;
   background: transparent;
   border: 1px solid #385773;
   border-radius: 8px;
-  font-size: .74rem;
+  font-size: .8rem;
 }
 .capstone-settings:hover { color: #fff; border-color: #668ba8; background: rgba(35, 66, 94, .45); }
 .capstone-settings[hidden] { display: none; }
-.capstone-card-footer { align-items: flex-end; margin-top: 20px; }
-.capstone-card-footer p { max-width: 255px; margin: 0; color: #7895ae; font-size: .72rem; line-height: 1.45; }
+.capstone-card-footer { align-items: flex-end; margin-top: 24px; }
+.capstone-card-footer p { max-width: 315px; margin: 0; color: #7895ae; font-size: .86rem; line-height: 1.5; }
 .capstone-action:focus-visible,
 .capstone-settings:focus-visible,
 .capstone-close:focus-visible,
