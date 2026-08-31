@@ -46,10 +46,10 @@ const STORAGE_KEY = "qwik.cognigyEndpointConfigUrl";
 function setupPage() {
   const settingsButton = document.querySelector("#settings-button");
   const settingsDialog = document.querySelector("#settings-dialog");
-  const settingsForm = document.querySelector("#settings-form");
   const endpointInput = document.querySelector("#endpoint-url");
   const clearButton = document.querySelector("#clear-settings");
   const closeButton = document.querySelector("#close-settings");
+  const saveButton = document.querySelector("#save-settings");
   const errorText = document.querySelector("#settings-error");
   const status = document.querySelector("#connection-status");
   const widgetMount = document.querySelector("#widget-mount");
@@ -80,7 +80,7 @@ function setupPage() {
   const connect = async (endpointUrl) => {
     if (!endpointUrl) {
       setStatus("Not connected", "pending");
-      settingsDialog.showModal();
+      openDialog();
       return;
     }
     if (!window.isSecureContext) {
@@ -118,18 +118,31 @@ function setupPage() {
     }
   };
 
+  const openDialog = () => {
+    settingsDialog.hidden = false;
+    settingsDialog.setAttribute("aria-hidden", "false");
+    closeButton.focus();
+  };
+
+  const closeDialog = () => {
+    settingsDialog.hidden = true;
+    settingsDialog.setAttribute("aria-hidden", "true");
+    if (!settingsButton.hidden) settingsButton.focus();
+  };
+
   settingsButton.addEventListener("click", () => {
     endpointInput.value = localStorage.getItem(STORAGE_KEY) || "";
     errorText.hidden = true;
-    settingsDialog.showModal();
+    openDialog();
   });
 
-  closeButton.addEventListener("click", () => {
-    settingsDialog.close();
-  });
-
-  settingsForm.addEventListener("submit", (event) => {
+  closeButton.addEventListener("click", (event) => {
     event.preventDefault();
+    event.stopPropagation();
+    closeDialog();
+  });
+
+  saveButton.addEventListener("click", () => {
     const value = endpointInput.value.trim();
     if (!isValidEndpointUrl(value)) {
       errorText.textContent = "Enter a complete HTTPS Endpoint configuration URL.";
@@ -137,7 +150,7 @@ function setupPage() {
       return;
     }
     localStorage.setItem(STORAGE_KEY, value);
-    settingsDialog.close();
+    closeDialog();
     location.reload();
   });
 

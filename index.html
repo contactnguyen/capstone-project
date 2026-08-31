@@ -42,15 +42,15 @@
         </section>
 
         <div class="capstone-card-footer">
-          <p>Appointment changes happen only after explicit confirmation.</p>
+          <p>Start a call with Sam using the widget below. When a cancellation confirmation is ready, a notification will appear here.</p>
           <button id="settings-button" class="capstone-settings" type="button">Connection settings</button>
         </div>
       </section>
     </section>
   </main>
 
-  <dialog id="settings-dialog" aria-labelledby="settings-title">
-    <form id="settings-form" method="dialog">
+  <section id="settings-dialog" aria-modal="true" aria-labelledby="settings-title" hidden>
+    <div id="settings-form" class="capstone-dialog-form">
       <div class="capstone-dialog-heading">
         <div>
           <p class="eyebrow">LOCAL BROWSER SETTING</p>
@@ -64,10 +64,10 @@
       <p id="settings-error" class="capstone-error" role="alert" hidden></p>
       <div class="capstone-dialog-actions">
         <button class="capstone-settings" type="button" id="clear-settings">Clear</button>
-        <button class="capstone-action" type="submit">Save and connect</button>
+        <button class="capstone-action" type="button" id="save-settings">Save and connect</button>
       </div>
-    </form>
-  </dialog>
+    </div>
+  </section>
 
   <script src="https://github.com/Cognigy/click-to-call-widget/releases/latest/download/webRTCWidget.js"></script>
   <script src="capstone-config.js"></script>
